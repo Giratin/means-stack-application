@@ -15,16 +15,21 @@ export class UsersComponent implements OnInit {
 
   users: Array<any> = new Array<any>();
   isLoading : boolean = true;
-
+  isError : boolean = false;
   ngOnInit(): void {
 
 
     this.userService.getAll().subscribe(
       (res)=>{
-        this.isLoading = false
+        this.isLoading = false;
+        this.isError = false;
         if (res){
           this.users = res as Array<any>;
         }
+      },
+      (err)=>{
+        this.isLoading = false;
+        this.isError = true;
       }
     )
 

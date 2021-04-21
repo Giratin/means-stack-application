@@ -1,43 +1,48 @@
-
 <div class="container my-4">
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="flex mb-2">
-                <div class="spacer"></div>
-                <div>
-                    <h2 class="text-center h2 mb-2"> List Of Users </h2>
-                </div>
-                <div class="spacer"></div>
-                <div>
-                    <a class="btn btn-info btn-sm" routerLink="/create" > Create New </a>
-                </div>
-            </div>
-            <div *ngIf="isLoading">
-              <h4 class="h2 text-danger"> Loading ... </h4>
-            </div>
-            <table class="table" *ngIf="!isLoading">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let user of users">
-                    <th scope="row"> {{ user._id }} </th>
-                    <td> {{ user.name }} </td>
-                    <td> {{ user.age }} </td>
-                    <td> {{ user.email }} </td>
-                    <td> <a class="btn btn-default btn-sm" [routerLink]="'/show/'+user._id"> show details </a> </td>
-                  </tr>
-                </tbody>
-            </table>
-
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="flex mb-2">
+        <div class="spacer"></div>
+        <div>
+          <h2 class="text-center h2 mb-2"> List Of Users </h2>
         </div>
-        <div class="col-2"></div>
+        <div class="spacer"></div>
+        <div>
+          <a class="btn btn-info btn-sm" routerLink="/create"> Create New </a>
+        </div>
+      </div>
+      <div *ngIf="isLoading">
+        <h4 class="h2 text-danger"> Loading ... </h4>
+      </div>
+      <div *ngIf="!isLoading">
+        <div *ngIf="isError">
+          <p class="text-danger text-center my-4">
+            Error while retrieving data
+          </p>
+        </div>
+        <table class="table" *ngIf="!isError">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Age</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <th scope="row"> {{ user._id }} </th>
+              <td> {{ user.name }} </td>
+              <td> {{ user.age }} </td>
+              <td> {{ user.email }} </td>
+              <td> <a class="btn btn-default btn-sm" [routerLink]="'/show/'+user._id"> show details </a> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+    <div class="col-2"></div>
+  </div>
 </div>
