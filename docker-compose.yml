@@ -12,7 +12,7 @@ services:
   express: # name of the second service
     build: server # specify the directory of the Dockerfile
     ports:
-      - "51111:3000" #specify ports mapping
+      - "4201:3000" #specify ports mapping
     links:
       - database # link this service to the database service
     #restart: unless_stopped 
