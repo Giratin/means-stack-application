@@ -11,7 +11,7 @@ var app = express();
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://mongo/testingdevops', { useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect('mongodb://database/testingdevops', { useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser: true })
   .then(()=>{
     console.log("mongodb connected");
   })
