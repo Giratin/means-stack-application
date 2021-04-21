@@ -23,7 +23,7 @@ RUN npm run build --prod=true
 FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /usr/app/dist /usr/share/nginx/html
+COPY --from=build /usr/app/dist/front /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
