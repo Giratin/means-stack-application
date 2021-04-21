@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="flex mb-2">
+                <div class="spacer"></div>
+                <div>
+                    <h2 class="text-center h2 mb-2"> Created New User </h2>
+                </div>
+                <div class="spacer"></div>
+                <div>
+                    <a class="btn btn-info btn-sm" routerLink="/" > List All </a>
+                </div>
+            </div>
+            <form #createForm="ngForm">
+                <div class="form-group">
+                    <label for="" class="full-width">
+                        Name
+                        <input type="text" required [(ngModel)]="name" name="name" placeholder="Name" class="form-control full-width">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="" class="full-width">
+                        Age
+                        <input type="number" required [(ngModel)]="age" name="age" placeholder="age" class="form-control full-width">
+                    </label>
+                </div>
+                <div class="form-group" >
+                    <label for="" class="full-width">
+                        Email
+                        <input type="text" required [(ngModel)]="email" name="email" placeholder="E-mail" class="form-control full-width">
+                    </label>
+                </div>
+
+                <div *ngIf="created">
+                    <p class="text-success text-center"> {{ created }} </p>
+                </div>
+                <div class="flex">
+                    <div class="spacer"></div>
+                    <div class="mr-2">
+                        <button type="submit" class="btn btn-success btn-sm" (click)="submit()" [disabled]="createForm.invalid || isLoading" > Create </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>

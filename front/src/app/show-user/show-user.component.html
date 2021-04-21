@@ -1,0 +1,34 @@
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="flex mb-2">
+                <div class="spacer"></div>
+                <div>
+                    <h2 class="text-center h2 mb-2"> User's details </h2>
+                </div>
+                <div class="spacer"></div>
+                <div>
+                    <a class="btn btn-info btn-sm" routerLink="/" > List All </a>
+                </div>
+            </div>
+            <div *ngIf="isLoading">
+                <p class="text-center text-danger"> loading </p>
+            </div>
+            <div *ngIf="!isLoading">
+                <div *ngIf="isError">
+                    <p class="text-danger text-center my-4">
+                        User Not Found
+                    </p>
+                </div>
+                <div *ngIf="!isError">
+                    <p> <b>Name : </b> {{ user.name }} </p>
+                    <p> <b>Age : </b> {{ user.age }} </p>
+                    <p> <b>Email : </b> {{ user.email }} </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
