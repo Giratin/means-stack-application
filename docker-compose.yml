@@ -1,0 +1,31 @@
+version: "3.7"
+
+services:
+  angular: # name of the first service
+    build: front # specify the directory of the Dockerfile
+    ports:
+      - "4200:80" # specify port mapping
+    restarts: unless_stopped
+    networks:
+      - my-network
+ 
+  express: # name of the second service
+    build: server # specify the directory of the Dockerfile
+    ports:
+      - "51100:3000" #specify ports mapping
+    links:
+      - database # link this service to the database service
+    restarts: unless_stopped
+    networks:
+      - my-network
+  
+  database: # name of the third service
+    image: mongo # specify image to build container from
+    ports:
+      - "27017:27017" # specify port forwarding
+    restarts: unless_stopped
+    networks:
+      - my-network
+
+networks:
+    my-network:
