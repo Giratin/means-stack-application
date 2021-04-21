@@ -6,6 +6,8 @@ services:
     ports:
       - "4200:80" # specify port mapping
     #restart: unless_stopped
+    depends_on:
+      - express
     networks:
       - my-network
  
@@ -13,7 +15,7 @@ services:
     build: server # specify the directory of the Dockerfile
     ports:
       - "4201:3000" #specify ports mapping
-    links:
+    depends_on:
       - database # link this service to the database service
     #restart: unless_stopped 
     networks:
@@ -28,4 +30,4 @@ services:
       - my-network
 
 networks:
-    my-network:
+  my-network:
