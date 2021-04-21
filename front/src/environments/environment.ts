@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: "http://express:4201"
+  url: "http://express"
 };
 
 /*
