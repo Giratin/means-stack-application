@@ -15,7 +15,7 @@ COPY . .
 RUN npm install
 
 # Generate the build of the application
-RUN npm run build --prod=true
+RUN ng build --prod=true
 
 # Stage 2: Serve app with nginx server
 
