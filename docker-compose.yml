@@ -8,6 +8,9 @@ services:
     #restart: unless_stopped
     depends_on:
       - express
+    links:
+      - express
+    stdin_open: true
     networks:
       - my-network
  
