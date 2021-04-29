@@ -6,11 +6,11 @@ services:
     ports:
       - "4200:80" # specify port mapping
     #restart: unless_stopped
+    stdin_open: true
     depends_on:
       - express
     links:
       - express
-    stdin_open: true
     networks:
       - my-network
  
@@ -34,4 +34,3 @@ services:
 
 networks:
   my-network:
-    driver: bridge
