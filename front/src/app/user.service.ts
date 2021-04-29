@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class UserService {
 
 
-  private readonly url = environment.url;
+  private readonly url = environment.url + "/api";
 
   constructor(
     private http: HttpClient
