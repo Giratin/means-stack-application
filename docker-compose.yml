@@ -7,6 +7,10 @@ services:
       - "4200:4200" # specify port mapping
     #restart: unless_stopped
     stdin_open: true
+    depends_on:
+      - express
+    links:
+      - express
     networks:
       - my-network
  
