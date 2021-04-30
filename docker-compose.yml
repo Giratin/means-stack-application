@@ -4,7 +4,7 @@ services:
   angular: # name of the first service
     build: front # specify the directory of the Dockerfile
     ports:
-      - "4200:80" # specify port mapping
+      - "4200:4200" # specify port mapping
     #restart: unless_stopped
     stdin_open: true
     networks:
