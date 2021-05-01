@@ -1,30 +1,37 @@
 # Stage 1: Compile and Build angular codebase
 
 # Use official node image as the base image
-FROM node:12 as build
+FROM node:12 as builder
 
-# Set the working directory
-WORKDIR /usr/app
+WORKDIR /app
 
-RUN npm i -g @angular/cli@11.2.6
+COPY package.json package-lock.json ./app
 
-# Add the source code to app
-COPY . .
+# disabling ssl for npm for Dev or if you are behind proxy
+RUN npm set strict-ssl false
 
-# Install all the dependencies
+RUN npm ci
+
+COPY . ./app
+
 RUN npm install
 
-CMD ng serve --host 0.0.0.0
-# Generate the build of the application
-#RUN ng build --prod=true
+RUN ng build --prod=true
 
-# Stage 2: Serve app with nginx server
+RUN ls -l
 
-# Use official nginx image as the base image
-#FROM nginx:latest
+RUN cp ./app/server/index.js ./app/dist/
 
-# Copy the build output to replace the default nginx contents.
-#COPY --from=build /usr/app/dist/front /usr/share/nginx/html
-#COPY nginx.conf /etc/nginx/conf.d/default.conf
-# Expose port 80
-#EXPOSE 80
+RUN cp ./app/server/package.json ./app/dist/
+
+RUN cd ./app/dist && npm ci
+
+FROM node:12
+
+COPY --from=builder /app /app
+
+WORKDIR /app
+# Expose the port the app runs in
+EXPOSE 4000
+
+CMD ["node", "dist/front/index.js"]

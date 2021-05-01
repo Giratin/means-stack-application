@@ -4,13 +4,9 @@ services:
   angular: # name of the first service
     build: front # specify the directory of the Dockerfile
     ports:
-      - "4200:4200" # specify port mapping
+      - "4000:4000" # specify port mapping
     #restart: unless_stopped
     stdin_open: true
-    depends_on:
-      - express
-    links:
-      - express
     networks:
       - my-network
  
@@ -31,6 +27,16 @@ services:
     #restart: unless_stopped
     networks:
       - my-network
+
+  nginx: #name of the fourth service
+    build: loadbalancer # specify the directory of the Dockerfile
+    container_name: mean_nginx
+    restart: always
+    ports:
+      - "80:80" #specify ports forewarding
+    links:
+      - express
+      - angular
 
 networks:
   my-network:
