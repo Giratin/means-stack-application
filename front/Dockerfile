@@ -14,9 +14,9 @@ RUN npm ci
 
 COPY . ./app/
 
-RUN npm install
+RUN cd ./app npm install
 
-RUN ng build --prod=true
+RUN cd ./app && ng build --prod=true
 
 RUN ls -l
 
