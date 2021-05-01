@@ -1,7 +1,4 @@
-# Stage 1: Compile and Build angular codebase
-
-# Use official node image as the base image
-FROM node:12 as builder
+FROM node:14.5-alpine as builder
 
 WORKDIR /app
 
@@ -9,6 +6,8 @@ COPY package.json package-lock.json ./app/
 
 # disabling ssl for npm for Dev or if you are behind proxy
 RUN npm set strict-ssl false
+
+RUN npm install @angular/cli@latest
 
 RUN cd ./app && npm ci
 
