@@ -23,7 +23,7 @@ RUN cp ./app/server/index.js ./app/dist/
 
 RUN cp ./app/server/package.json ./app/dist/
 
-RUN cd ./app/dist && npm ci
+RUN cd ./app/dist && npm i
 
 FROM node:12
 
