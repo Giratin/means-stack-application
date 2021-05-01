@@ -27,4 +27,4 @@ RUN cd ./dist/server && npm i
 
 EXPOSE 4000
 
-CMD ["node", "./dist/server/front/index.js"]
+CMD ["node", "/app/dist/server/front/index.js"]
