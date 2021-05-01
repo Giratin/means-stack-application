@@ -17,9 +17,11 @@ RUN cd ./app && npm install
 
 RUN cd ./app && ng build --prod=true
 
-RUN ls -l ./app/dist
+RUN ls -l ./app
 
-RUN mv ./server ./dist/
+RUN mv ./app/server ./app/dist/
+
+RUN ls -l ./app/dist
 
 RUN cd ./dist/server && npm i
 
