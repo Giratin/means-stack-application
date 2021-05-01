@@ -19,10 +19,10 @@ RUN cd ./app && ng build --prod=true
 
 RUN ls -l ./app/dist
 
-RUN mv ./app/server ./app/dist/
+RUN mv ./server ./dist/
 
-RUN cd ./app/dist/server && npm i
+RUN cd ./dist/server && npm i
 
 EXPOSE 4000
 
-CMD ["node", "./app/dist/server/front/index.js"]
+CMD ["node", "./dist/server/front/index.js"]
