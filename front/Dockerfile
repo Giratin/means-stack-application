@@ -21,12 +21,6 @@ RUN ls -l ./app/dist
 
 RUN cd ./app/dist && npm i
 
-FROM node:12
-
-COPY --from=builder /app /app
-
-WORKDIR /app
-# Expose the port the app runs in
 EXPOSE 4000
 
-CMD ["node", "dist/front/index.js"]
+CMD ["node", "./app/dist/front/index.js"]
