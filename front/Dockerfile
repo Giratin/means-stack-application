@@ -7,7 +7,7 @@ COPY package.json package-lock.json ./app/
 # disabling ssl for npm for Dev or if you are behind proxy
 RUN npm set strict-ssl false
 
-RUN npm install @angular/cli@latest
+RUN npm install -g @angular/cli@latest
 
 RUN cd ./app && npm ci
 
