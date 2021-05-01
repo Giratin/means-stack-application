@@ -5,14 +5,14 @@ FROM node:12 as builder
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./app
+COPY package.json package-lock.json ./app/
 
 # disabling ssl for npm for Dev or if you are behind proxy
 RUN npm set strict-ssl false
 
 RUN npm ci
 
-COPY . ./app
+COPY . ./app/
 
 RUN npm install
 
