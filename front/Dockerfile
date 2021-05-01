@@ -10,11 +10,11 @@ COPY package.json package-lock.json ./app/
 # disabling ssl for npm for Dev or if you are behind proxy
 RUN npm set strict-ssl false
 
-RUN npm ci
+RUN cd ./app && npm ci
 
 COPY . ./app/
 
-RUN cd ./app npm install
+RUN cd ./app && npm install
 
 RUN cd ./app && ng build --prod=true
 
