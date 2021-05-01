@@ -30,7 +30,7 @@ services:
 
   nginx: #name of the fourth service
     build: loadbalancer # specify the directory of the Dockerfile
-    container_name: mean_nginx
+    container_name: nginx_mean
     restart: always
     ports:
       - "80:80" #specify ports forewarding
