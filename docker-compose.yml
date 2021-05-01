@@ -33,7 +33,7 @@ services:
     container_name: nginx_mean
     restart: always
     ports:
-      - "8080:80" #specify ports forewarding
+      - "4202:80" #specify ports forewarding
     links:
       - express
       - angular
