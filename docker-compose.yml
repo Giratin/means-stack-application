@@ -34,6 +34,9 @@ services:
     restart: always
     ports:
       - "4202:80" #specify ports forewarding
+    depends_on:
+      - express
+      - angular
     links:
       - express
       - angular
