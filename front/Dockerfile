@@ -1,30 +1,22 @@
 FROM node:14.5-alpine as builder
 
-WORKDIR /app
-
-COPY package.json package-lock.json ./app/
+RUN npm install -g @angular/cli@latest
 
 # disabling ssl for npm for Dev or if you are behind proxy
 RUN npm set strict-ssl false
 
-RUN npm install -g @angular/cli@latest
+COPY . .
 
-RUN cd ./app && npm ci
+RUN  npm install
 
-COPY . ./app/
+RUN ng build --prod=true
 
-RUN cd ./app && npm install
+RUN mv ./server ./dist/
 
-RUN cd ./app && ng build --prod=true
-
-RUN ls -l ./app
-
-RUN mv ./app/server ./app/dist/
-
-RUN ls -l ./app/dist
-
-RUN cd ./app/dist/server && npm i
+RUN cd ./dist/server && npm i
 
 EXPOSE 4000
 
-CMD ["node", "/app/dist/server/index.js"]
+RUN ls -R
+
+CMD ["node", "./dist/server/index.js"]
