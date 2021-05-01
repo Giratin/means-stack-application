@@ -19,7 +19,9 @@ RUN cd ./app && ng build --prod=true
 
 RUN ls -l ./app/dist
 
-RUN cd ./app/dist && npm i
+RUN cp ./app/server ./app/dist/
+
+RUN cd ./app/dist/server && npm i
 
 EXPOSE 4000
 
