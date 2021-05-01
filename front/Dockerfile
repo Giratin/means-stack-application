@@ -7,7 +7,14 @@ RUN npm set strict-ssl false
 
 COPY . .
 
-RUN  npm install
+RUN echo "first ls"
+
+RUN ls -l
+
+RUN npm install
+
+RUN echo "afer npm install ls"
+RUN ls -l
 
 RUN ng build --prod=true
 
