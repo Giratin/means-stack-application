@@ -17,11 +17,7 @@ RUN cd ./app && npm install
 
 RUN cd ./app && ng build --prod=true
 
-RUN ls -l
-
-RUN cp ./app/server/index.js ./app/dist/
-
-RUN cp ./app/server/package.json ./app/dist/
+RUN ls -l ./app/dist
 
 RUN cd ./app/dist && npm i
 
