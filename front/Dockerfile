@@ -23,7 +23,7 @@ RUN mv ./app/server ./app/dist/
 
 RUN ls -l ./app/dist
 
-RUN cd ./dist/server && npm i
+RUN cd ./app/dist/server && npm i
 
 EXPOSE 4000
 
