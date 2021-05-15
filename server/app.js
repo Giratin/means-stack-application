@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 
 const db_url = process.env.DB_URL || "mongodb://localhost:27017/testingdevops";
 
-console.log("DB URL" , db_url);
+console.log("DB URL", db_url);
 
 
 mongoose.connect(db_url, { useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser: true })
@@ -37,12 +37,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
   const prefix = process.env.API_ROUTE_PREFIX || '';
-  
-  console.log("prfix is", prefix);
-  const redirectTo = req.protocol + '://' + req.headers.host + prefix + req.originalUrl;
-  console.log("new URL is ", redirectTo);
-  // req.url = redirectTo;
-  next();
+
+  if (req.originalUrl.indexOf('/api/') != -1) {
+    console.log("aborting");
+    next();
+  } else {
+    const redirectTo = req.protocol + '://' + req.headers.host + prefix + req.originalUrl;
+    console.log("new URL is ", redirectTo);
+    req.url = redirectTo;
+    next();
+  }
 });
 
 // app.use(process.env.API_ROUTE_PREFIX || '/', router);
