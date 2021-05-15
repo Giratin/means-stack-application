@@ -17,8 +17,8 @@ services:
     #restart: unless_stopped 
     env_file:
       - ./server/.env
-    volumes:
-      - ./server:/usr/server/node_modules/
+    # volumes:
+    #   - ./server:/usr/server/node_modules/
   
   database: # name of the third service
     image: mongo # specify image to build container from
