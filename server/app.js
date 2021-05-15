@@ -31,7 +31,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(process.env.API_ROUTE_PREFIX || '/', router);
+
+router.use(function(req, res, next) {
+  res.url = req.protocol + '://' + req.headers.host + process.env.API_ROUTE_PREFIX || '/'+ req.url;
+  next();
+});
+
+// app.use(process.env.API_ROUTE_PREFIX || '/', router);
 
 app.use('/', usersRouter);
 

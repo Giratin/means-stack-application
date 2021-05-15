@@ -19,4 +19,8 @@ RUN cd ./dist/server && npm i
 
 EXPOSE 4000
 
+# FROM node::14.5-alpine
+
+# COPY --from=builder /dist
+
 CMD ["node", "./dist/server/index.js"]
