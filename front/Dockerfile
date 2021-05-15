@@ -9,14 +9,7 @@ RUN npm set strict-ssl false
 
 COPY . .
 
-RUN echo "first ls"
-
-RUN ls -l
-
 RUN npm install
-
-RUN echo "afer npm install ls"
-RUN ls -l
 
 RUN ng build --prod=true
 
@@ -25,7 +18,5 @@ RUN mv ./server ./dist/
 RUN cd ./dist/server && npm i
 
 EXPOSE 4000
-
-RUN ls -R
 
 CMD ["node", "./dist/server/index.js"]

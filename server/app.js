@@ -4,14 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://database/testingdevops', { useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser: true })
+const db_url = process.env.DB_URL || "mongodb://localhost:27017/testingdevops";
+
+mongoose.connect(db_url, { useCreateIndex: true, useUnifiedTopology: true, useNewUrlParser: true })
   .then(()=>{
     console.log("mongodb connected");
   })
@@ -31,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api', usersRouter);
+app.use('/', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

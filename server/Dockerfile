@@ -10,4 +10,4 @@ RUN npm install
 
 EXPOSE 3000
 
-CMD node /usr/server/bin/www
+CMD ["npm","run","start"]
