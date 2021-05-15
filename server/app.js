@@ -7,7 +7,7 @@ var logger = require('morgan');
 var usersRouter = require('./routes/users');
 
 var app = express();
-
+var router = express.Router();
 const mongoose = require('mongoose');
 
 const db_url = process.env.DB_URL || "mongodb://localhost:27017/testingdevops";
@@ -35,23 +35,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req, res, next) {
-  const prefix = process.env.API_ROUTE_PREFIX || '';
+// app.use(function (req, res, next) {
+//   const prefix = process.env.API_ROUTE_PREFIX || '';
 
-  if (req.originalUrl.indexOf('/api/') != -1) {
-    console.log("aborting");
-    next();
-  } else {
-    const redirectTo = req.protocol + '://' + req.headers.host + prefix + req.originalUrl;
-    console.log("new URL is ", redirectTo);
-    req.url = redirectTo;
-    next();
-  }
-});
+//   if (req.originalUrl.indexOf('/api/') != -1) {
+//     console.log("aborting");
+//     next();
+//   } else {
+//     const redirectTo = req.protocol + '://' + req.headers.host + prefix + req.originalUrl;
+//     console.log("new URL is ", redirectTo);
+//     req.url = redirectTo;
+//     next();
+//   }
+// });
 
-// app.use(process.env.API_ROUTE_PREFIX || '/', router);
+const prefix = process.env.API_ROUTE_PREFIX || "/api/v1"
+app.use( prefix, router);
 
-app.use('/', usersRouter);
+router.use('/', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
