@@ -3,8 +3,8 @@ version: "3.7"
 services:
   angular: # name of the first service
     build: front # specify the directory of the Dockerfile
-    # ports:
-    #   - "4000:4000" # specify port mapping
+    ports:
+      - "4000:4000" # specify port mapping
     volumes:
       - ./front:/usr/app/node_modules/
  
