@@ -35,25 +35,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(function (req, res, next) {
-//   const prefix = process.env.API_ROUTE_PREFIX || '';
-
-//   if (req.originalUrl.indexOf('/api/') != -1) {
-//     console.log("aborting");
-//     next();
-//   } else {
-//     const redirectTo = req.protocol + '://' + req.headers.host + prefix + req.originalUrl;
-//     console.log("new URL is ", redirectTo);
-//     req.url = redirectTo;
-//     next();
-//   }
-// });
-
 const prefix = process.env.API_ROUTE_PREFIX || "/api/v1"
+app.use(`${prefix}`,express.static(path.join(__dirname, 'public')) )
+
+
 app.use( prefix, router);
 
 router.use('/', usersRouter);
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
