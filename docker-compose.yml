@@ -5,7 +5,7 @@ services:
     build: front # specify the directory of the Dockerfile
     # ports:
     #   - "4000:4000" # specify port mapping
-    voulmes:
+    volumes:
       - ./front:/usr/app/node_modules/
  
   express: # name of the second service
@@ -17,7 +17,7 @@ services:
     #restart: unless_stopped 
     env_file:
       - ./server/.env
-    voulmes:
+    volumes:
       - ./server:/usr/server/node_modules/
   
   database: # name of the third service
