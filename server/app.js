@@ -35,10 +35,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(function (req, res, next) {
-//   res.url = req.protocol + '://' + req.headers.host + process.env.API_ROUTE_PREFIX || '/' + req.url;
-//   next();
-// });
+app.use(function (req, res, next) {
+  const prefix = process.env.API_ROUTE_PREFIX || '';
+  
+  console.log("prfix is", prefix);
+  const redirectTo = req.protocol + '://' + req.headers.host + prefix + req.originalUrl;
+  req.url = redirectTo;
+  next();
+});
 
 // app.use(process.env.API_ROUTE_PREFIX || '/', router);
 
