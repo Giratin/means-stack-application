@@ -40,6 +40,7 @@ app.use(function (req, res, next) {
   
   console.log("prfix is", prefix);
   const redirectTo = req.protocol + '://' + req.headers.host + prefix + req.originalUrl;
+  console.log("new URL is ", redirectTo);
   req.url = redirectTo;
   next();
 });
