@@ -4,7 +4,9 @@ var router = express.Router();
 const User = require('../models/user.model');
 
 /* GET users listing. */
-router.get('/reset-all', async function (req, res, next) {
+
+
+router.get('/api/reset-all', async function (req, res, next) {
   const user1 = User({
     name: "yassine sta",
     age: 21,
@@ -36,11 +38,11 @@ router.get('/reset-all', async function (req, res, next) {
 });
 
 
-router.get('/', async (req,res)=>{
+router.get('/api/', async (req,res)=>{
   const users = await User.find();
   res.json(users);
 });
-router.post('/', async (req,res)=>{
+router.post('/api/', async (req,res)=>{
   const { name, age, email } = req.body;
 
   const user = new User({ name, age, email });
@@ -48,7 +50,7 @@ router.post('/', async (req,res)=>{
   res.json(user);
 });
 
-router.get('/:_id', async function (req, res, next) {
+router.get('/api/:_id', async function (req, res, next) {
   const { _id } = req.params;
 
 
