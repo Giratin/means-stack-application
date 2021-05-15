@@ -7,7 +7,7 @@ This code consist of 4 applications, each running in its own docker container.
 - `froont`, webpack powered angular frontend
 - `mongo`, mongodb database
 
-![container overview](https://github.com/Giratin/means-stack-application/raw/master/containers_overview_mean_stack.png)
+![container overview](https://github.com/Giratin/means-stack-application/raw/main/containers_overview_mean_stack.png)
 
 ## Prerequisites
 
